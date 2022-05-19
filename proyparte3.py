@@ -6,7 +6,7 @@ Created on Tue May 17 19:41:40 2022
 """
 
 
-def secuencia(arr:list):
+def secuencia(arr:list): # Extrae la secuencia de caracteres removidos en su orden de encriptación
     
     
     #sec = []
@@ -19,10 +19,7 @@ def secuencia(arr:list):
             
             sec = arr[i] + sec
             #sec.insert(0, arr[i])
-        
-    
-    
-    
+
     return sec
     
     print(sec)
@@ -30,7 +27,7 @@ def secuencia(arr:list):
     
 dicCantidadChar = {}
 
-def conditions(a:list,sec:list):
+def conditions(a:list,sec:list): #Solo sirve para ver cuantas letras de cada una debe tener la cadena desencriptada
     
     sec =  '?'+sec
     #print(sec)
@@ -44,7 +41,7 @@ def conditions(a:list,sec:list):
     print(dicCantidadChar)
     
     
-def desencript(a:list,sec:list)->list:
+def decrypt(a:list,sec:list)->list: #desencripta dadas la cadena encriptada y la secuencia de cadenas eliminadas
     n=0
     sec =  "?"+sec
     for i in range(1,len(sec)):
@@ -57,15 +54,26 @@ def desencript(a:list,sec:list)->list:
     return a[0:int(n)]
     
 
+def comprobar(decrypted:str,sec:str)->str: #Encripta otra vez para comprobar si la cadena encriptada que se leyó es la misma
+    
+    a = decrypted
+    for i in sec:
+        
+        b = decrypted.replace(i,"")
+        a +=b
+        decrypted = b
+        #print(decrypted)
+        #print(a)
+    return a
+    
+    
     
     
 
 if __name__ == '__main__':
     
     
-    #a = ['r','s','r','t','r','s','r','r','r','t','r','r','t']
-    #ori = ['r','s','r','t','r','s','r']
-    
+    #a = input()
     #a = "rsrtrsrrrtrrt"
     a = "mfqmtptmqpitmqmtptmqpitmqmtptmqptqtptqptqttqtttt"
     #a = "ama"
@@ -73,23 +81,24 @@ if __name__ == '__main__':
     #a = "ppuxbdvdmmzbsbmrzjkdxkzxkbhpzpmmupbmz"
     #print(a.count("t"))
     
-    #print(13-3-8)
     
-    #print(len(a))
-    #print(len(ori))
-    
-    #a.remove()
-    
-    #print(a)
-    
-    print(secuencia(a))
+    #print(secuencia(a))
     
     sec = secuencia(a)
     
     conditions(a, sec)
-    print(desencript(a, sec)+" " + sec)
     
     
-    #print("hello")
+    original = decrypt(a, sec)
+
+    checkEncrypt = comprobar(original, sec)
+    
+    if checkEncrypt != a:
+        
+        print("NO EXISTE")
+    else:
+        print(original+" " + sec)
+        
+    
 
     
