@@ -75,10 +75,11 @@ if __name__ == '__main__':
     
     #a = input()
     #a = "rsrtrsrrrtrrt"
-    a = "mfqmtptmqpitmqmtptmqpitmqmtptmqptqtptqptqttqtttt"
+    #a = "mfqmtptmqpitmqmtptmqpitmqmtptmqptqtptqptqttqtttt"
     #a = "ama"
     #a = "qweqeewew"
     #a = "ppuxbdvdmmzbsbmrzjkdxkzxkbhpzpmmupbmz"
+    a = "armaramam"
     #print(a.count("t"))
     
     
