@@ -5,7 +5,8 @@ Created on Tue May 17 19:41:40 2022
 @author: Guillen
 """
 
-
+import random
+import time
 def secuencia(arr:list): # Extrae la secuencia de caracteres removidos en su orden de encriptación
     
     
@@ -66,40 +67,75 @@ def comprobar(decrypted:str,sec:str)->str: #Encripta otra vez para comprobar si 
         #print(a)
     return a
     
-    
+def crearCadena(decrypted:str)->str: #Encripta Una cadena en orden de caracteres arbitrarios como hace el enunciado.
+    a = decrypted
+    i = 0
+    while i != len(decrypted) and len(decrypted) > 0:
+         n = random.randint(0,len(decrypted)-1)
+         c = decrypted[n]
+         b = decrypted.replace(c,"")
+         a +=b
+         decrypted = b
+         i +=1
+    return a
     
     
 
 if __name__ == '__main__':
     
-    
+    start = time.time()
+
     #a = input()
     #a = "rsrtrsrrrtrrt"
     #a = "mfqmtptmqpitmqmtptmqpitmqmtptmqptqtptqptqttqtttt"
     #a = "ama"
     #a = "qweqeewew"
     #a = "ppuxbdvdmmzbsbmrzjkdxkzxkbhpzpmmupbmz"
-    a = "armaramam"
-    #print(a.count("t"))
+    #a = "armaramam"
+    #a = "pneumonoultramicroscopicsilicovolcanoconiosispnemonoltramicroscopicsilicovolcanoconiosispnemonoltramicrocopicilicovolcanoconioipnemnltramicrcpicilicvlcancniinemnltramicrcicilicvlcancniinemnltramcrcclcvlcancnnemnltrmcrcclcvlcncnnemnltmccclcvlcncnnemnltmlvlnnemltmlvleltlvleltllete"
+    
+    #a = crearCadena(input())
+    
+    with open('encriptado135kchars.txt', 'r+') as f: # Para testear la palabra encriptada correcta
+        a = f.read()
+    
+    # with open('encriptado135kcharsNOEXISTE.txt', 'r+') as f: #Para testear la palabra encriptada incorrecta. Se le agregó solo un caracter, deberia dár incorrecto (NO EXISTE).
+    #     a = f.read()
+    
+        f.close()
+    
     
     
     #print(secuencia(a))
-    
+    #for i in range(1000):
+        
     sec = secuencia(a)
     
     conditions(a, sec)
     
     
     original = decrypt(a, sec)
-
-    checkEncrypt = comprobar(original, sec)
+    with open('original10kchars.txt', 'w') as f:
+        f.write(original+" "+ sec)
+        f.close()
+        checkEncrypt = comprobar(original, sec)
     
     if checkEncrypt != a:
         
         print("NO EXISTE")
     else:
         print(original+" " + sec)
-        
+    
+    end = time.time()
+    
+    final = str(end-start)
+    print(str("TIME: "+final))
+    #print(crearCadena("pneumonoultramicroscopicsilicovolcanoconiosis"))
+    #b = "ewbyagjnbfcypkcytgnkqwmcfztrnocfexpepxpdemnzwguzwgmmqauolduemzeuncdrpviinaelzidqpnkasvwbpisldepamfvjzzknqvjyrvbyytmlvsohktturbdabofnmmwndqmrcwrnnmdhywatvscxpelflujckcpjziotqtpgzamdczmyvzexajejrqymiuemrwbtywiuukpkihchrmsjwmozojxymsaygjrsdohioijjhtvjrrjpvefwnxdwrmowxsqamcyhykjdexeqqgchhvadtnzvljrfmgbplydvgpmioibvpsmsdukoorixmcynnxikudhngqmjyviarmyntelgtybmpvvnlbnbuslrdfjlotqqgrhkjayunywkkpqhtckaxlovlhytidzlxllsxsdvlmjkcydmvivkcnoyvsmavsbhkunfibmcnkxjvqlfmnlvdhlvhgkoxndqesemvfccfvhzyasbkvmcchwjgtlz"
+    
+    
+    
+    
     
 
     
